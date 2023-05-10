@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Navigation from './components/Navigation';
+import Picturegallery from './components/Picturegallery';
+import { modeSelected } from './features/pictureSlice';
+import { useSelector } from 'react-redux';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
+
+
 
 function App() {
+
+  const currentMode = useSelector(modeSelected);
+
+  const theme = createTheme({
+    palette: {
+      mode: currentMode
+    }
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Navigation />
+      <Picturegallery />
+    </ThemeProvider>
+  )
 }
 
-export default App;
+export default App
