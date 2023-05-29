@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
-import { Container, Typography, Box, Grid } from '@mui/material';
+import { Container, Typography, Box, Grid, styled } from '@mui/material';
 import { fetchImages, pictureData } from '../features/pictureSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 function Picturegallery() {
 
   const fetchedPictureData = useSelector(pictureData);
-  console.log(fetchedPictureData);
   const dispatch = useDispatch();
-
-
+  
   const fetchData = () => {
     dispatch(fetchImages());
   }
@@ -17,6 +15,7 @@ function Picturegallery() {
   useEffect(() => {
     fetchData();
   } ,[dispatch])
+
   return (
    <>
    <Container maxWidth = 'xl' sx={{
